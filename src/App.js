@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  
-  
 
   render() {
+
+    function clickTest() {
+      alert("You clicked the button!"); 
+    }; 
+
     return (
       <div className="App">
         <div className="App-header">
@@ -15,9 +18,9 @@ class App extends Component {
           To get started, enter a search term and text field.
         </p>
         <form id="form">
-          <div>Search term: <input type="text"></input></div>
-          <div>Text field: <textarea rows="5" cols="35"></textarea></div>
-          <div><button type="submit">Submit</button></div>
+          <div><input type="text" placeholder="Enter search term here" /></div>
+          <div><textarea rows="5" cols="35" placeholder="Text field..." ></textarea></div>
+          <div><button onClick={clickTest}>Submit</button></div>
           <div><button type="reset">Clear</button></div>
         </form>
       </div>
