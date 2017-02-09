@@ -21,9 +21,9 @@ class App extends Component {
   }
 
   handleSubmit(){
-    console.log("Input: ", this.state.input);  
-    console.log("Textarea: ", this.state.textarea); 
-    alert("click"); 
+    // console.log("Input: ", this.state.input);  
+    // console.log("Textarea: ", this.state.textarea); 
+    alert("Your search term is *" + this.state.input + "* and your text field to search is *" + this.state.textarea + "*. Press OK to continue."); 
   }
 
   render() {
