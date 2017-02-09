@@ -3,6 +3,11 @@ import './App.css';
 
 class App extends Component {
 
+  constructor(props){
+    super(props); 
+    this.state = {input: '', textarea: ''}; 
+  }
+
   render() {
 
     function clickTest() {
@@ -18,8 +23,8 @@ class App extends Component {
           To get started, enter a search term and text field.
         </p>
         <form id="form">
-          <div><input type="text" placeholder="Enter search term here" /></div>
-          <div><textarea rows="5" cols="35" placeholder="Text field..." ></textarea></div>
+          <div><input type="text" value={this.state.input} placeholder="Enter search term..."/></div>
+          <div><textarea rows="5" cols="35"  value={this.state.textarea} placeholder="Text field..." ></textarea></div>
           <div><button onClick={clickTest}>Submit</button></div>
           <div><button type="reset">Clear</button></div>
         </form>
