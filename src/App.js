@@ -20,10 +20,17 @@ export default class App extends Component {
 
   clickHandler(){
     let input = this.state.input;
-    console.log('Submitted input: ', input); 
     let text = this.state.text;
+
+    console.log('Submitted input: ', input); 
     console.log('Submitted text: ', text); 
+
     //use regex to compare input/text
+    let searchString = text.search(input.toString()); 
+
+    console.log('result: ', searchString); 
+    if (searchString >= 0){ console.log("match successful!")}
+    if (searchString === -1){ console.log("no matches!")}
   }
 
   render() {
@@ -37,6 +44,7 @@ export default class App extends Component {
         
         <p className="App-intro">To get started, enter a search term and text field.</p>
        
+
         <div>
           <input 
             type="text" 

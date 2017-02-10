@@ -4,7 +4,7 @@ import './App.css';
 export default class Search extends Component{
 
 	render(){
-		console.log('Props: ', this.props);
+	// 	console.log('Props: ', this.props);
 		return(
 			<div className="Search">
 				<h1>Search Results: </h1>
