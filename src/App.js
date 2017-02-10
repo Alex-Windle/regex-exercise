@@ -7,7 +7,7 @@ export default class App extends Component {
 
   constructor(props){
     super(props); 
-    this.state = {input: '', text: ''}; 
+    this.state = {input: '', text: '', result: '', index: '', message: ''}; 
   } 
 
   inputHandler(e){ 
@@ -21,22 +21,37 @@ export default class App extends Component {
   clickHandler(){
     let input = this.state.input;
     let text = this.state.text;
+    // let result = this.state.result;
+    // let index = this.state.index;
 
     console.log('Submitted input: ', input); 
     console.log('Submitted text: ', text); 
 
-    //use regex to compare input/text
-    let searchString = text.search(input.toString()); 
+    //use regex SEARCH
+    let searchResult = text.search(input); 
 
-    console.log('result: ', searchString); 
-    if (searchString >= 0){ console.log("match successful!")}
-    if (searchString === -1){ console.log("no matches!")}
-  }
+    if (searchResult >= 0){ 
+      this.setState({result: 'Match successful.', index: searchResult}); 
+    }
+    if (searchResult === -1){ 
+      this.setState({result: 'No match found.'});
+    }
+
+   //display match 
+    let array = text.split(''); 
+    let newArray = array.slice(searchResult, array.length);
+    let finalArray = newArray.join('');
+    // text = "The match begins at *" + finalArray;
+    this.setState({message: 'The match begins at *' + finalArray});
+  } 
 
   render() {
 
     let input = this.state.input;
     let text = this.state.text;
+    let result = this.state.result; 
+    let index = this.state.index;
+    let message = this.state.message;
 
     return (
       <div className="App">
@@ -63,10 +78,11 @@ export default class App extends Component {
             placeholder="Text field..."
           />
         </div>
-            
-        <Search input={input} text={text} />
 
         <button onClick={this.clickHandler.bind(this)}>Submit</button>
+            
+        <Search input={input} text={text} result={result} index={index} message={message} />
+
       </div>
     );
   }
