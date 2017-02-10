@@ -1,73 +1,66 @@
 import React, { Component } from 'react';
+
+import Search from './Search'; 
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
 
   constructor(props){
     super(props); 
-    this.state = {input: '', textarea: ''}; 
+    this.state = {input: '', text: ''}; 
+  } 
 
-    this.inputChange = this.inputChange.bind(this);
-    this.textareaChange = this.textareaChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  inputChange(e){ 
+  inputHandler(e){ 
     this.setState({input: e.target.value}); 
   } 
 
-  textareaChange(e){
-    this.setState({textarea: e.target.value}); 
+  textHandler(e){
+    this.setState({text: e.target.value}); 
   }
 
-  handleSubmit(){
-    // console.log("Input: ", this.state.input);  
-    // console.log("Textarea: ", this.state.textarea); 
-    alert("Your search term is *" + this.state.input + "* and your text field to search is *" + this.state.textarea + "*. Press OK to continue."); 
+  clickHandler(){
+    let input = this.state.input;
+    console.log('Submitted input: ', input); 
+    let text = this.state.text;
+    console.log('Submitted text: ', text); 
+    //use regex to compare input/text
   }
 
   render() {
 
+    let input = this.state.input;
+    let text = this.state.text;
+
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Regex Exercise</h2>
+        <div className="App-header"><h2>Regex Exercise</h2></div>
+        
+        <p className="App-intro">To get started, enter a search term and text field.</p>
+       
+        <div>
+          <input 
+            type="text" 
+            value={this.state.input} 
+            onChange={this.inputHandler.bind(this)} 
+            placeholder="Search term..."
+          />
         </div>
-        <p className="App-intro">
-          To get started, enter a search term and text field.
-        </p>
-        <form id="form">
-          <div>
-            <input 
-              type="text" 
-              value={this.state.input} 
-              onChange={this.inputChange} 
-              placeholder="Enter search term..."
-            />
-          </div>
-          <div>
-            <textarea 
-              rows="5" 
-              cols="35" 
-              value={this.state.textarea} 
-              onChange={this.textareaChange} 
-              placeholder="Text field..." >
-            </textarea>
-          </div>
-          <div>
-            <button onClick={this.handleSubmit}>
-              Submit
-            </button>
-          </div>
-          <div>
-            <button type="reset">
-              Clear
-            </button>
-          </div>
-        </form>
+          
+        <div>
+          <textarea
+            rows="5" 
+            cols="35" 
+            value={this.state.text} 
+            onChange={this.textHandler.bind(this)} 
+            placeholder="Text field..."
+          />
+        </div>
+            
+        <Search input={input} text={text} />
+
+        <button onClick={this.clickHandler.bind(this)}>Submit</button>
       </div>
     );
   }
 }
 
-export default App;
