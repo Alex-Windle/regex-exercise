@@ -21,28 +21,22 @@ export default class App extends Component {
   clickHandler(){
     let input = this.state.input;
     let text = this.state.text;
-    // let result = this.state.result;
-    // let index = this.state.index;
 
-    console.log('Submitted input: ', input); 
-    console.log('Submitted text: ', text); 
-
-    //use regex SEARCH
+    //regex SEARCH
     let searchResult = text.search(input); 
 
     if (searchResult >= 0){ 
       this.setState({result: 'Match successful.', index: searchResult}); 
+      //display message 
+      let array = text.split(''); 
+      let newArray = array.slice(searchResult, array.length);
+      let finalArray = newArray.join('');
+      this.setState({message: 'The match begins at *' + finalArray});
     }
+
     if (searchResult === -1){ 
       this.setState({result: 'No match found.'});
     }
-
-   //display match 
-    let array = text.split(''); 
-    let newArray = array.slice(searchResult, array.length);
-    let finalArray = newArray.join('');
-    // text = "The match begins at *" + finalArray;
-    this.setState({message: 'The match begins at *' + finalArray});
   } 
 
   render() {
@@ -56,33 +50,35 @@ export default class App extends Component {
     return (
       <div className="App">
         <div className="App-header"><h2>Regex Exercise</h2></div>
-        
-        <p className="App-intro">To get started, enter a search term and text field.</p>
-       
 
-        <div>
-          <input 
-            type="text" 
-            value={this.state.input} 
-            onChange={this.inputHandler.bind(this)} 
-            placeholder="Search term..."
-          />
-        </div>
-          
-        <div>
-          <textarea
-            rows="5" 
-            cols="35" 
-            value={this.state.text} 
-            onChange={this.textHandler.bind(this)} 
-            placeholder="Text field..."
-          />
-        </div>
+        <div className="Body">
+            <div><p className="App-intro">To get started, enter a search term and text field.</p></div>
 
-        <button onClick={this.clickHandler.bind(this)}>Submit</button>
+              <div>
+                <input 
+                  type="text" 
+                  value={this.state.input} 
+                  onChange={this.inputHandler.bind(this)} 
+                  placeholder="Search term..."
+                />
+              </div>
             
-        <Search input={input} text={text} result={result} index={index} message={message} />
+            <div>
+              <textarea
+                rows="5" 
+                cols="35" 
+                value={this.state.text} 
+                onChange={this.textHandler.bind(this)} 
+                placeholder="Text field..."
+              />
+            </div>
 
+            <div><button onClick={this.clickHandler.bind(this)}>Submit</button></div>
+              
+           <Search input={input} text={text} result={result} index={index} message={message} />
+          
+        </div>
+        <div><footer></footer></div>
       </div>
     );
   }

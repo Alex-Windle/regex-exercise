@@ -6,7 +6,7 @@ export default class Search extends Component{
 	render(){
 	// 	console.log('Props: ', this.props);
 	// let index = this.props.index;
-	let text = this.props.text;
+	// let text = this.props.text;
 	let message = this.props.message;
 
 		return(
