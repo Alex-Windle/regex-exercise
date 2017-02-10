@@ -25,6 +25,7 @@ export default class App extends Component {
     //regex SEARCH
     let searchResult = text.search(input); 
 
+
     if (searchResult >= 0){ 
       this.setState({result: 'Match successful.', index: searchResult}); 
       //display message 
